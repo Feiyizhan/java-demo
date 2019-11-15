@@ -9,10 +9,12 @@ import io.netty.channel.ChannelHandlerContext;
 import java.util.Scanner;
 
 /**
- *
+ * 收到消息后才触发输入的处理器
  * @author 徐明龙 XuMingLong 2019-11-14
  */
 public class EnterHandler extends ChannelHandlerAdapter {
+
+
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
@@ -29,5 +31,12 @@ public class EnterHandler extends ChannelHandlerAdapter {
 //        ctx.fireChannelRead(msg);
 
 
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        // Close the connection when an exception is raised.
+        cause.printStackTrace();
+        ctx.close();
     }
 }

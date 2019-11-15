@@ -25,6 +25,16 @@ public abstract class BaseClient<T extends Channel> {
     }
 
     /**
+     * 设置 option
+     * @author 徐明龙 XuMingLong 2019-11-15
+     * @return void
+     */
+    public void setOption(){
+
+    }
+
+
+    /**
      * 获取ChannelInitializer
      * @author 徐明龙 XuMingLong 2019-11-14
      * @return io.netty.channel.ChannelInitializer<T>
@@ -41,6 +51,7 @@ public abstract class BaseClient<T extends Channel> {
             bootstrap.group(work)
                 .channel(NioSocketChannel.class)
                 .handler(getChannelInitializer());
+            setOption();
             //绑定端口
             ChannelFuture cf = bootstrap.connect(host,port).sync();
             if(cf.isSuccess()){
