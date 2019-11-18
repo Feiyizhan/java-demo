@@ -9,6 +9,7 @@ import io.netty.util.ResourceLeakDetector;
 
 /**
  * 基础服务
+ * 参考 @see  https://netty.io/wiki/user-guide-for-5.x.html
  * @author 徐明龙 XuMingLong 2019-11-14
  */
 public abstract class BaseServer {
