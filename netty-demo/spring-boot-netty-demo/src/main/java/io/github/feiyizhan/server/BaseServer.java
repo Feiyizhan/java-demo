@@ -5,6 +5,7 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.ResourceLeakDetector;
 
 /**
  * 基础服务
@@ -64,6 +65,9 @@ public abstract class BaseServer {
             setChildOption();
             //定义链接处理器
             setChildHandler();
+            //增加内存泄漏诊断器
+            ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.ADVANCED);
+
             //异步启动并绑定指定端口
             ChannelFuture cf = bootstrap.bind(port).sync();
             if (cf.isSuccess()){

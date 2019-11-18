@@ -13,7 +13,10 @@ public class DiscardServerHandler extends ChannelHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         // Discard the received data silently.
-        ((ByteBuf) msg).release();
+        ByteBuf buf = (ByteBuf) msg;
+        System.out.println("当前读索引的位置："+buf.readerIndex());
+        System.out.println("当前写索引的位置："+buf.writerIndex());
+        buf.release();
     }
 
     @Override

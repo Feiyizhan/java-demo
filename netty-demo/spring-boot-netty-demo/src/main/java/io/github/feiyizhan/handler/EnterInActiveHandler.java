@@ -29,13 +29,27 @@ public class EnterInActiveHandler extends ChannelHandlerAdapter {
             String content = sc.next();
 
             if("exit".equalsIgnoreCase(content)){
-                ctx.close();
                 break;
             }
             ByteBuf resp = Unpooled.copiedBuffer(content.getBytes());
-            ctx.writeAndFlush(resp).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
+            ctx.writeAndFlush(resp);
         }while(true);
-        
+    }
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入消息:");
+        String content = sc.next();
+        if("exit".equalsIgnoreCase(content)){
+            ctx.close();
+            return;
+        }
+        ByteBuf resp = Unpooled.copiedBuffer(content.getBytes());
+        ctx.writeAndFlush(resp).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
+        //让下一个ChannelHandler处理
+        ctx.fireChannelRead(msg);
+
     }
 
 

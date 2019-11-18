@@ -14,6 +14,13 @@ import java.util.Scanner;
  */
 public class EnterHandler extends ChannelHandlerAdapter {
 
+    @Override public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        Scanner sc = new Scanner(System.in);
+            System.out.println("请输入消息:");
+            String content = sc.next();
+            ByteBuf resp = Unpooled.copiedBuffer(content.getBytes());
+            ctx.writeAndFlush(resp);
+    }
 
 
     @Override
@@ -28,7 +35,7 @@ public class EnterHandler extends ChannelHandlerAdapter {
         ByteBuf resp = Unpooled.copiedBuffer(content.getBytes());
         ctx.writeAndFlush(resp).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
         //让下一个ChannelHandler处理
-//        ctx.fireChannelRead(msg);
+        ctx.fireChannelRead(msg);
 
 
     }
