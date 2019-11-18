@@ -3,7 +3,7 @@ package io.github.feiyizhan;
 import io.github.feiyizhan.server.NettyPackageServer;
 
 /**
- * NettyTimeServer 测试类
+ * NettyPackageServer 测试类
  * @author 徐明龙 XuMingLong 2019-11-14
  */
 public class NettyPackageServerTests {
