@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
+<!--Configuration后面的status，这个用于设置log4j2自身内部的信息输出，可以不设置，当设置成trace时，你会看到log4j2内部各种详细输出-->
+<!--monitorInterval：Log4j能够自动检测修改配置 文件和重新配置本身，设置间隔秒数-->
+<configuration status="WARN" monitorInterval="30">
+    <!--先定义所有的appender-->
+    <appenders>
+    <!--这个输出控制台的配置 -->
+        <console name="Console" target="SYSTEM_OUT">
+        <!--输出日志的格式-->
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %-5level: [%c{1.}:%L] - %m%n"/>
+        </console>
+        <!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，这个也挺有用的，适合临时测试用-->
+        <File name="Testlog" fileName="/logs/spring-boot-websocket-demo/dev.log" append="false">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %-5level: [%c{1.}:%L] - %msg%xEx%n"/>
+        </File>
+        <!-- 这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
+        <RollingFile name="RollingFile" fileName="/logs/spring-boot-websocket-demo/app-dev.log"
+                 filePattern="/logs/spring-boot-websocket-demo/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %-5level: [%c{1.}:%L] - %msg%xEx%n"/>
+            <SizeBasedTriggeringPolicy size="50MB"/>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了20 -->
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+        <!-- 这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
+        <RollingFile name="ConferenceFile" fileName="/logs/spring-boot-websocket-demo/conference-dev.log"
+                     filePattern="/logs/spring-boot-websocket-demo/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %-5level: [%c{1.}:%L] - %msg%xEx%n"/>
+            <SizeBasedTriggeringPolicy size="50MB"/>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了20 -->
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+    </appenders>
+
+    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
+    <loggers>
+        <!-- 将业务dao接口填写进去,并用控制台输出即可 -->
+        <logger name="io.github.feiyizhan.dao" level="debug" additivity="false">
+            <appender-ref ref="RollingFile"/>
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="com.expertsplatform.utils" level="debug" additivity="false">
+            <appender-ref ref="RollingFile"/>
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="com.expertsplatform.service" level="debug" additivity="false">
+            <appender-ref ref="RollingFile"/>
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="com.expertsplatform.controller" level="debug" additivity="false">
+            <appender-ref ref="RollingFile"/>
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="com.expertsplatform.beans" level="debug" additivity="false">
+            <appender-ref ref="RollingFile"/>
+            <appender-ref ref="Console"/>
+        </logger>
+
+
+        <root level="info">
+            <appender-ref ref="Testlog"></appender-ref>
+            <appender-ref ref="Console" />
+        </root>
+    </loggers>
+</configuration>
