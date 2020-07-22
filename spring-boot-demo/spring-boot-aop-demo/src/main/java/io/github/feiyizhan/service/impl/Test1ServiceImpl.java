@@ -18,4 +18,8 @@ public class Test1ServiceImpl implements ITest1Service {
     @Override public String getText(String text) {
         return StringUtils.chop(text);
     }
+
+    @Override public String sayHello(String name, String sex, String age) {
+        return String.join(" ",name,sex,age);
+    }
 }

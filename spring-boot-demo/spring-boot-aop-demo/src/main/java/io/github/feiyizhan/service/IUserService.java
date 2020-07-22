@@ -5,5 +5,9 @@ package io.github.feiyizhan.service;
  */
 public interface IUserService {
 
+    String save(String user);
+
     void testIntroduction();
+
+    void testAnnotationAop();
 }

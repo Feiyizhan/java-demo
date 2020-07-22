@@ -29,4 +29,8 @@ public class Test1Controller {
     }
 
 
+    @GetMapping("/say-hello")
+    public ResponseEntity<String> sayHello(){
+        return ResponseEntity.ok(test1Service.sayHello("西西","未知","28"));
+    }
 }

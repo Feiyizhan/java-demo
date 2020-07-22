@@ -12,4 +12,7 @@ public interface ITest1Service {
      * @return java.lang.String
      */
     String getText(String text);
+
+
+    String sayHello(String name,String sex,String age);
 }
