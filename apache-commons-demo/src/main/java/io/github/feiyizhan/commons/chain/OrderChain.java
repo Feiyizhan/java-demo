@@ -1,6 +1,7 @@
 package io.github.feiyizhan.commons.chain;
 
 import io.github.feiyizhan.commons.chain.command.*;
+import io.github.feiyizhan.commons.chain.filter.BankCheckFilter;
 import org.apache.commons.chain.impl.ChainBase;
 
 /**
@@ -35,6 +36,22 @@ public class OrderChain extends ChainBase {
         chain.addCommand(new CreateCmd());
         chain.addCommand(new SubmitCmd());
         chain.addCommand(new ApproveCmd());
+        chain.addCommand(new PayCmd());
+        chain.addCommand(new DeliveryCmd());
+        return chain;
+    }
+
+    /**
+     * 获取一个带过滤的链
+     * @author 徐明龙 XuMingLong 2020-07-23
+     * @return io.github.feiyizhan.commons.chain.OrderChain
+     */
+    public static OrderChain getFilterChain(){
+        OrderChain chain = new OrderChain();
+        chain.addCommand(new CreateCmd());
+        chain.addCommand(new SubmitCmd());
+        chain.addCommand(new ApproveCmd());
+        chain.addCommand(new BankCheckFilter());
         chain.addCommand(new PayCmd());
         chain.addCommand(new DeliveryCmd());
         return chain;
