@@ -57,6 +57,11 @@ public class MeetingScheduleTests {
         Console.log("最终的数据为：{}",result);
     }
 
+    /**
+     * 获取随机时间
+     * @author 徐明龙 XuMingLong 2021-03-10
+     * @return java.time.LocalTime
+     */
     private LocalTime getRandomTime(){
         return LocalTime.of(RandomUtil.randomInt(0,23),RandomUtil.randomInt(0,60),RandomUtil.randomInt(0,60));
     }
