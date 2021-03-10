@@ -5,6 +5,7 @@ import lombok.Data;
 import java.time.LocalTime;
 
 /**
+ * 会议信息实体
  * @author 徐明龙 XuMingLong 2021-03-04
  */
 @Data
