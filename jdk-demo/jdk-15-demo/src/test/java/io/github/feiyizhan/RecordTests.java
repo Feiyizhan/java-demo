@@ -43,4 +43,12 @@ public class RecordTests {
         System.out.println(classRoom);
     }
 
+    @Test
+    public void test3(){
+        Student student1 = new Student("张三",1,24);
+        Student student2 = new Student("李四",2,10);
+        System.out.println(student1);
+        System.out.println(student2);
+    }
+
 }
