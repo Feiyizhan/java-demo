@@ -32,6 +32,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
+		<!--hutool-->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>5.3.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -48,7 +56,16 @@
 					</excludes>
 				</configuration>
 			</plugin>
-		</plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>15</source>
+          <target>15</target>
+          <compilerArgs>--enable-preview</compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
 	</build>
 
 </project>
