@@ -51,4 +51,12 @@ public class RecordTests {
         System.out.println(student2);
     }
 
+    @Test
+    public void test4(){
+        Student student1 = new Student("张三",1,24);
+        Student student2 = new Student("李四",2,30);
+        System.out.println(student1);
+        System.out.println(student2);
+        System.out.println(student1.name() + " " + student1.id() + " " + student1.age() + " " + student1.showName());
+    }
 }
