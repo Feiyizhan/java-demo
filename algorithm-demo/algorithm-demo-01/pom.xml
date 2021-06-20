@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.github.feiyizhan</groupId>
-	<artifactId>algorithm-demo</artifactId>
+	<artifactId>algorithm-demo-01</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>algorithm-demo-01</name>
 	<description>会议规划算法demo</description>
