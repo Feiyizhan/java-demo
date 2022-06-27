@@ -41,6 +41,7 @@
 	<modules>
 		<module>dynamic-programming-demo</module>
 		<module>spring-boot-admin-demo</module>
+		<module>poi-demo</module>
 	</modules>
 
 	<build>
